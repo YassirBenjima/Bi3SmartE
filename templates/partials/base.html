@@ -312,11 +312,18 @@
   <!-- /FOOTER -->
 
   <!-- jQuery Plugins -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="{% static "assets/js/jquery.min.js" %}"></script>
   <script src="{% static "assets/js/bootstrap.min.js" %}"></script>
   <script src="{% static "assets/js/slick.min.js" %}"></script>
   <script src="{% static "assets/js/nouislider.min.js" %}"></script>
   <script src="{% static "assets/js/jquery.zoom.min.js" %}"></script>
   <script src="{% static "assets/js/main.js" %}"></script>
+  <script>
+    setTimeout (() => {
+        $(".alert").alert("close")
+    },3000
+    )
+</script>
 </body>
 </html>

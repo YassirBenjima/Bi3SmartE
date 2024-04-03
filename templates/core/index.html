@@ -25,7 +25,14 @@
       <!-- /container -->
     </nav>
     <!-- /NAVIGATION -->
-
+    {% if messages%}
+    {% for message in messages%}
+        <div class="alert alert-{{message.tags}}">
+            <strong>{{message}}</strong>
+        </div>
+    {% endfor %}
+    {% endif %}
+    
     <!-- SECTION -->
     <div class="section">
       <!-- container -->

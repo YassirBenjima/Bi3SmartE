@@ -33,11 +33,19 @@
                                         <div class="separator separator-content my-14">
                                             <span class="w-125px text-gray-500 fw-semibold fs-7">Or with email</span>
                                         </div>
+                                        {% if messages%}
+                                            {% for message in messages%}
+                                                <div class="alert alert-{{message.tags}}">
+                                                    <strong>{{message}}</strong>
+                                                </div>
+                                            {% endfor %}
+                                        {% endif %}
+                                        
                                         <div class="fv-row mb-8">
                                             <input type="email" required name="email" placeholder="Username or Email" class="form-control bg-transparent"/>
                                         </div> 
                                         <div class="fv-row mb-8">
-                                            <input type="password" required name="email" placeholder="Password" class="form-control bg-transparent"/>
+                                            <input type="password" required name="password" placeholder="Password" class="form-control bg-transparent"/>
                                         </div> 
                                         <div class="fv-row mb-8">
                                             <label class="form-check form-check-inline">
@@ -65,5 +73,12 @@
 		</div>
 		<script src="{% static "assets_admin/plugins/global/plugins.bundle.js" %}"></script>
 		<script src="{% static "assets_admin/js/scripts.bundle.js" %}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script>
+            setTimeout (() => {
+                $(".alert").alert("close")
+            },3000
+            )
+        </script>
 	</body>
 </html>
