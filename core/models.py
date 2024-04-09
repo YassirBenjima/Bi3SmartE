@@ -94,8 +94,8 @@ class Product(models.Model):
     digital  = models.BooleanField(default=False)
 
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
-    
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True,related_name="category")
+    vendor = models.ForeignKey(Vendor, on_delete=models.SET_NULL, null=True)
     sku = ShortUUIDField(unique=True, length=4, max_length=20,prefix="sku",alphabet="123456789")
     date = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(null=True , blank=True)
