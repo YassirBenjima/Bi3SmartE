@@ -121,23 +121,26 @@
                 <div class="products-slick" data-nav="#slick-nav-1">
                   <!-- product -->
                   {% for category in categories%}
-                  <div class="product">
-                    <div class="product-img">
-                      <img src="{{category.image.url}}" alt="" />
-                      <div class="product-label">
-                        <span class="new">Category</span>
-                      </div>
-                    </div>
-                    <div class="product-body">
-                      <p class="product-category">{{category.title}}</p>
-                      <h3 class="product-name">
-                        <a href="#">{{category.title}}</a>
-                      </h3>
-                      <h4 class="product-price">
-                        {{category.category.count}} Product{{category.category.count|pluralize:"s"}}
-                      </h4>
-                    </div>
-                  </div>
+                        <div class="product">
+                          <a href="{% url 'core:category_product_list' category.C_id%}">
+
+                          <div class="product-img">
+                            <img src="{{category.image.url}}" alt="" />
+                            <div class="product-label">
+                              <span class="new">Category</span>
+                            </div>
+                          </div>
+                          <div class="product-body">
+                            <p class="product-category">{{category.title}}</p>
+                            <h3 class="product-name">
+                              {{category.title}}
+                            </h3>
+                            <h4 class="product-price">
+                              {{category.category.count}} Product{{category.category.count|pluralize:"s"}}
+                            </h4>
+                          </div>
+                        </a>
+                        </div>
                   {% endfor%}
                   <!-- /product -->
                 </div>
