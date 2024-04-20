@@ -1,5 +1,5 @@
 {% extends 'partials/base.html'%}
-{% block title %}Bi3Smart | Categories Page{% endblock %}
+{% block title %}Bi3Smart | Vendor Page{% endblock %}
 {% load static %}
 {% block content %}
 
@@ -80,10 +80,11 @@
         <!-- section title -->
         <div class="col-md-12">
           <div class="section-title">
-            <h3 class="title">Categories</h3>
+            <h3 class="title">Vendors</h3>
             <p class="product-price">
-              We found {{categories.count}} categorie{{categories.count|pluralize:"s"}}
-          </p>
+                We found {{vendors.count}} Vendor{{vendors.count|pluralize:"s"}}
+            </p>
+            </div>
           </div>
         </div>
         <!-- /section title -->
@@ -96,26 +97,29 @@
               <div id="tab1" class="tab-pane active">
                 <div class="products-slick" data-nav="#slick-nav-1">
                   <!-- product -->
-                  {% for category in categories%}
+                  {% for vendor in vendors%}
                         <div class="product">
-                          <a href="{% url 'core:category_product_list' category.C_id%}">
+                          {% comment %} <a href="{% url 'core:vendor' vendor.v_id%}"> {% endcomment %}
 
                           <div class="product-img">
-                            <img src="{{category.image.url}}" alt="" />
+                            <img src="{{vendor.image.url}}" alt="" />
                             <div class="product-label">
-                              <span class="new">Category</span>
+                              {% comment %} <span class="new">NEW</span> {% endcomment %}
                             </div>
                           </div>
                           <div class="product-body">
-                            <p class="product-category">{{category.title}}</p>
+                            <p class="product-category">{{vendor.date}}</p>
+                            <p class="product-category">{{vendor.address}}</p>
+                            <h4 class="product-category">{{vendor.contact}}</h4>
+
                             <h3 class="product-name">
-                              {{category.title}}
+                              {{vendor.title}}
                             </h3>
                             <h4 class="product-price">
-                              {{category.category.count}} Product{{category.category.count|pluralize:"s"}}
+                              {{vendor.vendor.all.count}} Product{{category.category.count|pluralize:"s"}}
                             </h4>
                           </div>
-                        </a>
+                        {% comment %} </a> {% endcomment %}
                         </div>
                   {% endfor%}
                   <!-- /product -->

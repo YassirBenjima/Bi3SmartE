@@ -66,6 +66,7 @@ class Vendor(models.Model):
     warranty_period = models.CharField(max_length=100, default="100")
 
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    date = models.DateTimeField(auto_now_add=True,null=True , blank=True)
     
     class Meta:
         verbose_name_plural = "Vendors"
@@ -95,7 +96,7 @@ class Product(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True,related_name="category")
-    vendor = models.ForeignKey(Vendor, on_delete=models.SET_NULL, null=True)
+    vendor = models.ForeignKey(Vendor, on_delete=models.SET_NULL, null=True , related_name="vendor")
     sku = ShortUUIDField(unique=True, length=4, max_length=20,prefix="sku",alphabet="123456789")
     date = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(null=True , blank=True)
@@ -107,7 +108,7 @@ class Product(models.Model):
     def __str__(self):
         return self.title
     def get_precentage(self):
-        new_price = (self.price / self.old_price)*100
+        new_price = (( self.old_price - self.price) / self.old_price)*100
         return new_price
 
 ############################################# ProductImages ######################################################################

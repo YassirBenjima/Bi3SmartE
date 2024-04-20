@@ -34,3 +34,10 @@ def category_product_list_view(request,C_id):
         "products":products,
     }
     return render(request,"core/category-product-list.html",context)
+
+def vendor_list_view(request):
+    vendors = Vendor.objects.all()
+    context = {
+        "vendors": vendors,
+    }
+    return render(request,"core/vendor-list.html",context)

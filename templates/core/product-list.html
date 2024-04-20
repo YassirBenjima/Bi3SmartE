@@ -11,198 +11,173 @@
   {% endfor %}
   {% endif %}
   
-  <!-- SECTION -->
-  <div class="section">
-    <!-- container -->
-    <div class="container">
-      <!-- row -->
-      <div class="row">
-        <!-- shop -->
-        <div class="col-md-4 col-xs-6">
-          <div class="shop">
-            <div class="shop-img">
-              <img src="./img/shop01.png" alt="" />
+<!-- SECTION -->
+<div class="section">
+  <!-- container -->
+  <div class="container">
+    <!-- row -->
+    <div class="row">
+      <!-- ASIDE -->
+      <div id="aside" class="col-md-3">
+        <!-- aside Widget -->
+        <div class="aside">
+          <h3 class="aside-title">Categories</h3>
+          <div class="checkbox-filter">
+            {% for category in categories %}
+            <div class="input-checkbox">
+              <input type="checkbox" id="category-1">
+              <label for="category-1">
+                <span></span>
+                {{category.title}}
+                <small>({{category.category.count}})</small>
+              </label>
             </div>
-            <div class="shop-body">
-              <h3>Laptop<br />Collection</h3>
-              <a href="#" class="cta-btn"
-                >Shop now <i class="fa fa-arrow-circle-right"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-        <!-- /shop -->
+            {% endfor %}
 
-        <!-- shop -->
-        <div class="col-md-4 col-xs-6">
-          <div class="shop">
-            <div class="shop-img">
-              <img src="./img/shop03.png" alt="" />
-            </div>
-            <div class="shop-body">
-              <h3>Accessories<br />Collection</h3>
-              <a href="#" class="cta-btn"
-                >Shop now <i class="fa fa-arrow-circle-right"></i
-              ></a>
-            </div>
           </div>
         </div>
-        <!-- /shop -->
+        <!-- /aside Widget -->
 
-        <!-- shop -->
-        <div class="col-md-4 col-xs-6">
-          <div class="shop">
-            <div class="shop-img">
-              <img src="./img/shop02.png" alt="" />
+        <!-- aside Widget -->
+        <div class="aside">
+          <h3 class="aside-title">Price</h3>
+          <div class="price-filter">
+            <div id="price-slider"></div>
+            <div class="input-number price-min">
+              <input id="price-min" type="number">
+              <span class="qty-up">+</span>
+              <span class="qty-down">-</span>
             </div>
-            <div class="shop-body">
-              <h3>Cameras<br />Collection</h3>
-              <a href="#" class="cta-btn"
-                >Shop now <i class="fa fa-arrow-circle-right"></i
-              ></a>
+            <span>-</span>
+            <div class="input-number price-max">
+              <input id="price-max" type="number">
+              <span class="qty-up">+</span>
+              <span class="qty-down">-</span>
             </div>
           </div>
         </div>
-        <!-- /shop -->
+        <!-- /aside Widget -->
+
+        <!-- aside Widget -->
+        <div class="aside">
+          <h3 class="aside-title">Brand</h3>
+          <div class="checkbox-filter">
+            <div class="input-checkbox">
+              <input type="checkbox" id="brand-1">
+              <label for="brand-1">
+                <span></span>
+                SAMSUNG
+                <small>(578)</small>
+              </label>
+            </div>
+          </div>
+        </div>
+        <!-- /aside Widget -->
+
+        <!-- aside Widget -->
+        <div class="aside">
+          <h3 class="aside-title">Top selling</h3>
+          <div class="product-widget">
+            <div class="product-img">
+              <img src="./img/product01.png" alt="">
+            </div>
+            <div class="product-body">
+              <p class="product-category">Category</p>
+              <h3 class="product-name"><a href="#">product name goes here</a></h3>
+              <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+            </div>
+          </div>
+        </div>
+        <!-- /aside Widget -->
       </div>
-      <!-- /row -->
-    </div>
-    <!-- /container -->
-  </div>
-  <!-- /SECTION -->
+      <!-- /ASIDE -->
 
-  <!-- SECTION -->
-  <div class="section">
-    <!-- container -->
-    <div class="container">
-      <!-- row -->
-      <div class="row">
-        <!-- section title -->
-        <div class="col-md-12">
-          <div class="section-title">
-            <h3 class="title">All Products</h3>
-            <div class="section-nav">
-              <ul class="section-tab-nav tab-nav">
-                {% for category in categories%}
-                  <li><a data-toggle="tab" href="#tab1">{{category.title}}</a></li>
-                {%endfor%}
-              </ul>
-            </div>
+      <!-- STORE -->
+      <div id="store" class="col-md-9">
+        <!-- store top filter -->
+        <div class="store-filter clearfix">
+          <div class="store-sort">
+            <label>
+              Sort By:
+              <select class="input-select">
+                <option value="0">Popular</option>
+                <option value="1">Position</option>
+              </select>
+            </label>
+
+            <label>
+              Show:
+              <select class="input-select">
+                <option value="0">20</option>
+                <option value="1">50</option>
+              </select>
+            </label>
           </div>
+          {% comment %} <ul class="store-grid">
+            <li class="active"><i class="fa fa-th"></i></li>
+            <li><a href="#"><i class="fa fa-th-list"></i></a></li>
+          </ul> {% endcomment %}
         </div>
-        <!-- /section title -->
+        <!-- /store top filter -->
 
-        <!-- Products tab & slick -->
-        <div class="col-md-12">
-          <div class="row">
-            <div class="products-tabs">
-              <!-- tab -->
-              <div id="tab1" class="tab-pane active">
-                <div class="products-slick" data-nav="#slick-nav-1">
-                  <!-- product -->
-                  {% for product in products%}
-                  <div class="product">
-                    <div class="product-img">
-                      <img src="{{product.image.url}}" alt="" />
-                      <div class="product-label">
-                        <span class="sale">-{{product.get_precentage|floatformat:0}}%</span>
-                        <span class="new">NEW</span>
-                      </div>
-                    </div>
-                    <div class="product-body">
-                      <p class="product-category">{{product.category.title}}</p>
-                      <h3 class="product-name">
-                        <a href="#">{{product.title}}</a>
-                      </h3>
-                      <h4 class="product-price">
-                        {{product.price}} MAD <del class="product-old-price">{{product.old_price}} MAD</del>
-                      </h4>
-                      <div class="product-rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                      </div>
-                      <div class="product-btns">
-                        <button class="add-to-wishlist">
-                          <i class="fa fa-heart-o"></i
-                          ><span class="tooltipp">add to wishlist</span>
-                        </button>
-                        <button class="add-to-compare">
-                          <i class="fa fa-exchange"></i
-                          ><span class="tooltipp">add to compare</span>
-                        </button>
-                        <button class="quick-view">
-                          <i class="fa fa-eye"></i
-                          ><span class="tooltipp">quick view</span>
-                        </button>
-                      </div>
-                    </div>
-                    <div class="add-to-cart">
-                      <button class="add-to-cart-btn">
-                        <i class="fa fa-shopping-cart"></i> add to cart
-                      </button>
-                    </div>
-                  </div>
-                  {% endfor%}
-                  <!-- /product -->
+        <!-- store products -->
+        <div class="row">
+          <!-- product -->
+          {% for product in products %}
+          <div class="col-md-4 col-xs-6">
+            <div class="product">
+              <div class="product-img">
+                <img src="{{product.image.url}}" alt="">
+                <div class="product-label">
+                  <span class="sale">{{product.get_precentage|floatformat:0}}%</span>
+                  <span class="new">NEW</span>
                 </div>
-                <div id="slick-nav-1" class="products-slick-nav"></div>
               </div>
-              <!-- /tab -->
+              <div class="product-body">
+                <p class="product-category">{{product.category.title}}</p>
+                <h3 class="product-name"><a href="#">{{product.title}}</a></h3>
+                <h4 class="product-price">{{product.price}} MAD <del class="product-old-price">{{product.old_price}} MAD</del></h4>
+                <div class="product-rating">
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                </div>
+                <div class="product-btns">
+                  <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+                  <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+                  <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+                </div>
+              </div>
+              <div class="add-to-cart">
+                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+              </div>
             </div>
           </div>
+          {%endfor%}
+          <!-- /product -->
         </div>
-        <!-- Products tab & slick -->
-      </div>
-      <!-- /row -->
-    </div>
-    <!-- /container -->
-  </div>
-  <!-- /SECTION -->
+        <!-- /store products -->
 
-
-
-  <!-- NEWSLETTER -->
-  <div id="newsletter" class="section">
-    <!-- container -->
-    <div class="container">
-      <!-- row -->
-      <div class="row">
-        <div class="col-md-12">
-          <div class="newsletter">
-            <p>Sign Up for the <strong>NEWSLETTER</strong></p>
-            <form>
-              <input
-                class="input"
-                type="email"
-                placeholder="Enter Your Email"
-              />
-              <button class="newsletter-btn">
-                <i class="fa fa-envelope"></i> Subscribe
-              </button>
-            </form>
-            <ul class="newsletter-follow">
-              <li>
-                <a href="#"><i class="fa fa-facebook"></i></a>
-              </li>
-              <li>
-                <a href="#"><i class="fa fa-twitter"></i></a>
-              </li>
-              <li>
-                <a href="#"><i class="fa fa-instagram"></i></a>
-              </li>
-              <li>
-                <a href="#"><i class="fa fa-pinterest"></i></a>
-              </li>
-            </ul>
-          </div>
+        <!-- store bottom filter -->
+        <div class="store-filter clearfix">
+          <span class="store-qty">Showing 20-100 products</span>
+          <ul class="store-pagination">
+            <li class="active">1</li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+          </ul>
         </div>
+        <!-- /store bottom filter -->
       </div>
-      <!-- /row -->
+      <!-- /STORE -->
     </div>
-    <!-- /container -->
+    <!-- /row -->
   </div>
-
+  <!-- /container -->
+</div>
+<!-- /SECTION -->
 {% endblock content %}

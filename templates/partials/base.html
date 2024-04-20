@@ -197,15 +197,8 @@
         <!-- NAV -->
         <ul class="main-nav nav navbar-nav">
           <li><a href="{% url 'core:index' %}">Home</a></li>
-          <li>
-            <a href="#">Categories</a>
-            <ul class="sub-menu">
-              {% for category in categories%}
-                <li><a href="{% url 'core:category_list' %}">{{category.title}}</a></li>
-              {% endfor%}
-            </ul>
-          </li>
-          <li><a href="#">Vendors</a></li>
+          <li><a href="{% url 'core:category_list' %}">Categories</a></li>
+          <li><a href="{% url 'core:vendors-list' %}">Vendors</a></li>
           <li><a href="#">Smartphones</a></li>
           <li><a href="#">Cameras</a></li>
           <li><a href="#">Accessories</a></li>
