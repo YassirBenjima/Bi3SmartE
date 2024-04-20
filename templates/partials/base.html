@@ -14,6 +14,14 @@
     <link type="text/css" rel="stylesheet" href="{% static "assets/css/nouislider.min.css" %}" /> 
     <link rel="stylesheet" href="{% static "assets/css/font-awesome.min.css" %}" />
     <link type="text/css" rel="stylesheet" href="{% static "assets/css/style.css" %}" />
+    <style>
+      .sub-menu {
+        display: none;
+      }
+      li:hover .sub-menu {
+        display: block;
+      }
+    </style>
   </head>
   <body>
     <!-- HEADER -->
@@ -180,7 +188,35 @@
       <!-- /MAIN HEADER -->
     </header>
     <!-- /HEADER -->
-
+  <!-- NAVIGATION -->
+  <nav id="navigation">
+    <!-- container -->
+    <div class="container">
+      <!-- responsive-nav -->
+      <div id="responsive-nav">
+        <!-- NAV -->
+        <ul class="main-nav nav navbar-nav">
+          <li><a href="{% url 'core:index' %}">Home</a></li>
+          <li>
+            <a href="#">Categories</a>
+            <ul class="sub-menu">
+              {% for category in categories%}
+                <li><a href="{% url 'core:category_list' %}">{{category.title}}</a></li>
+              {% endfor%}
+            </ul>
+          </li>
+          <li><a href="#">Vendors</a></li>
+          <li><a href="#">Smartphones</a></li>
+          <li><a href="#">Cameras</a></li>
+          <li><a href="#">Accessories</a></li>
+        </ul>
+        <!-- /NAV -->
+      </div>
+      <!-- /responsive-nav -->
+    </div>
+    <!-- /container -->
+  </nav>
+  <!-- /NAVIGATION -->
 {% block content %}
 
 {% endblock content %}
