@@ -1,0 +1,144 @@
+{% extends 'partials/base.html'%}
+{% block title %}Bi3Smart | Vendor Detail Page{% endblock %}
+{% load static %}
+{% block content %}
+
+  {% if messages%}
+  {% for message in messages%}
+      <div class="alert alert-{{message.tags}}">
+          <strong>{{message}}</strong>
+      </div>
+  {% endfor %}
+  {% endif %}
+  
+  <!-- SECTION -->
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <!-- shop -->
+                <div class="col-md-4 col-md-offset-4 col-xs-6">
+                    <div class="shop">
+                        <div class="shop-img">
+                            <img src="{{vendor.image.url}}" alt="" />
+                        </div>
+                        <div class="shop-body">
+                            <h3>{{vendor.title}}</h3>
+                            {% comment %} <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i  ></a> {% endcomment %}
+                            <h6>Since {{vendor.date|date:"Y"}}</h6>
+                            <p>{{vendor.address}}</p>
+                            <p>{{vendor.contact}}</p>
+                            <div class="section">
+                                <!-- container -->
+                                <div class="container">
+                                    <!-- row -->
+                                    <div class="row">
+                                        <!-- social icons -->
+                                        <ul class="list-inline">
+                                            <li>
+                                                <a href="#"><i class="fa fa-facebook fa-2x" style="color: #3b5998;"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><i class="fa fa-twitter fa-2x" style="color: #55acee;"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><i class="fa fa-instagram fa-2x" style="color: #ac2bac;"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><i class="fa fa-whatsapp  fa-2x" style="color: #25d366;"></i></a>
+                                            </li>
+                                        </ul>
+                                        <!-- /social icons -->
+                                    </div>
+                                    <!-- /row -->
+                                </div>
+                                <!-- /container -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /shop -->
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+
+  <!-- /SECTION -->
+
+  <!-- SECTION -->
+  <div class="section">
+    <!-- container -->
+    <div class="container">
+      <!-- row -->
+      <div class="row">
+        <!-- section title -->
+        <div class="col-md-12">
+          <div class="section-title">
+            <h3 class="title">Vendor {{vendor.title}}</h3>
+            <p class="product-price">
+                We found {{products.count}} Items{{products.count|pluralize:"s"}}
+            </p>
+            </div>
+          </div>
+        </div>
+        <!-- /section title -->
+
+        <!-- Products tab & slick -->
+        <div class="col-md-12">
+          <div class="row">
+            <div class="products-tabs">
+              <!-- tab -->
+              <div id="tab1" class="tab-pane active">
+                <div class="products-slick" data-nav="#slick-nav-1">
+                  <!-- product -->
+                  {% for product in products %}
+                    <div class="col-md-4 col-xs-6">
+                        <div class="product">
+                        <div class="product-img">
+                            <img src="{{product.image.url}}" alt="">
+                            <div class="product-label">
+                            <span class="sale">{{product.get_precentage|floatformat:0}}%</span>
+                            <span class="new">NEW</span>
+                            </div>
+                        </div>
+                        <div class="product-body">
+                            <p class="product-category">{{product.category.title}}</p>
+                            <h3 class="product-name"><a href="#">{{product.title}}</a></h3>
+                            <h4 class="product-price">{{product.price}} MAD <del class="product-old-price">{{product.old_price}} MAD</del></h4>
+                            <div class="product-rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            </div>
+                            <div class="product-btns">
+                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+                            <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+                            </div>
+                        </div>
+                        <div class="add-to-cart">
+                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                        </div>
+                        </div>
+                    </div>
+                    {%endfor%}
+                  <!-- /product -->
+                </div>
+                <div id="slick-nav-1" class="products-slick-nav"></div>
+              </div>
+              <!-- /tab -->
+            </div>
+          </div>
+        </div>
+        <!-- Products tab & slick -->
+      </div>
+      <!-- /row -->
+    </div>
+    <!-- /container -->
+  </div>
+  <!-- /SECTION -->
+{% endblock content %}

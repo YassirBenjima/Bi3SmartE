@@ -56,6 +56,8 @@ class Vendor(models.Model):
     v_id= ShortUUIDField(unique=True, length=10, max_length=20,prefix="ven",alphabet="abcdefghijklmnop123456789")
     title = models.CharField(max_length=100, default="Title Vendor")
     image = models.ImageField(upload_to=user_directory_path , default="vendor.jpg")
+    cover_image = models.ImageField(upload_to=user_directory_path , default="vendor.jpg")
+
     description = models.TextField(null=True, blank=True , default="This is the vendor")
     address = models.CharField(max_length=100, default="Main Street,Marrakech")
     contact = models.CharField(max_length=100, default="+212 659 394 401")

@@ -99,27 +99,26 @@
                   <!-- product -->
                   {% for vendor in vendors%}
                         <div class="product">
-                          {% comment %} <a href="{% url 'core:vendor' vendor.v_id%}"> {% endcomment %}
-
-                          <div class="product-img">
-                            <img src="{{vendor.image.url}}" alt="" />
-                            <div class="product-label">
-                              {% comment %} <span class="new">NEW</span> {% endcomment %}
+                          <a href="{% url 'core:vendor-list' vendor.v_id%}">
+                            <div class="product-img">
+                              <img src="{{vendor.image.url}}" alt="" />
+                              <div class="product-label">
+                                {% comment %} <span class="new">NEW</span> {% endcomment %}
+                              </div>
                             </div>
-                          </div>
-                          <div class="product-body">
-                            <p class="product-category">{{vendor.date}}</p>
-                            <p class="product-category">{{vendor.address}}</p>
-                            <h4 class="product-category">{{vendor.contact}}</h4>
+                            <div class="product-body">
+                              <p class="product-category">{{vendor.date}}</p>
+                              <p class="product-category">{{vendor.address}}</p>
+                              <h4 class="product-category">{{vendor.contact}}</h4>
 
-                            <h3 class="product-name">
-                              {{vendor.title}}
-                            </h3>
-                            <h4 class="product-price">
-                              {{vendor.vendor.all.count}} Product{{category.category.count|pluralize:"s"}}
-                            </h4>
-                          </div>
-                        {% comment %} </a> {% endcomment %}
+                              <h3 class="product-name">
+                                {{vendor.title}}
+                              </h3>
+                              <h4 class="product-price">
+                                {{vendor.vendor.all.count}} Product{{category.category.count|pluralize:"s"}}
+                              </h4>
+                            </div>
+                          </a>
                         </div>
                   {% endfor%}
                   <!-- /product -->
@@ -137,48 +136,4 @@
     <!-- /container -->
   </div>
   <!-- /SECTION -->
-
-
-
-  <!-- NEWSLETTER -->
-  <div id="newsletter" class="section">
-    <!-- container -->
-    <div class="container">
-      <!-- row -->
-      <div class="row">
-        <div class="col-md-12">
-          <div class="newsletter">
-            <p>Sign Up for the <strong>NEWSLETTER</strong></p>
-            <form>
-              <input
-                class="input"
-                type="email"
-                placeholder="Enter Your Email"
-              />
-              <button class="newsletter-btn">
-                <i class="fa fa-envelope"></i> Subscribe
-              </button>
-            </form>
-            <ul class="newsletter-follow">
-              <li>
-                <a href="#"><i class="fa fa-facebook"></i></a>
-              </li>
-              <li>
-                <a href="#"><i class="fa fa-twitter"></i></a>
-              </li>
-              <li>
-                <a href="#"><i class="fa fa-instagram"></i></a>
-              </li>
-              <li>
-                <a href="#"><i class="fa fa-pinterest"></i></a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <!-- /row -->
-    </div>
-    <!-- /container -->
-  </div>
-
 {% endblock content %}
