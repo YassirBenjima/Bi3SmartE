@@ -138,7 +138,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 JAZZMIN_SETTINGS = {   
     'site_header': "Bi3Smart",
     'site_brand': "Bi3Smart",
-    'site_logo' : "/assets/img/logo.png",
+    'site_logo' : "/assets/img/logo.svg",
     'copyright' : "Bi3Smart.com",
 }
 AUTH_USER_MODEL = 'userauths.User'
