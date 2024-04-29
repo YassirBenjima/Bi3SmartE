@@ -101,6 +101,7 @@
                         <li>SKU : <span style="color: #D10024;">{{product.sku}}</span></li><br>
                         <li>Date : <span style="color: #D10024;">{{product.date}}</span></li><br>
                         <li>Stock : <span style="color: #D10024;">{{product.stock_count}}</span></li><br>
+                        <li>Tags : <span style="color: #D10024;">{% for tag in product.tags.all %} <a href="{% url 'core:tag' tag.slug %}" rel="tag">#{{tag.name}}</a> {%endfor%}</span></li><br>
                     </ul>
                     
 
@@ -342,13 +343,13 @@
         <div class="container">
             <!-- row -->
             <div class="row">
-
+                {% if products %}
                 <div class="col-md-12">
                     <div class="section-title text-center">
                         <h3 class="title">Related Products</h3>
                     </div>
                 </div>
-
+                {%endif%}
                 <!-- product -->
                 {% for product in products %}
                     <div class="col-md-3 col-xs-6">
