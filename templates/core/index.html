@@ -102,6 +102,7 @@
                     <!-- product -->
                     {% for product in products%}
                     <div class="product">
+                      <a href="{% url 'core:product_detail' product.p_id%}">
                       <div class="product-img">
                         <img src="{{product.image.url}}" alt="" />
                         <div class="product-label">
@@ -112,7 +113,7 @@
                       <div class="product-body">
                         <p class="product-category">{{product.category.title}}</p>
                         <h3 class="product-name">
-                          <a href="#">{{product.title}}</a>
+                          <a href="{% url 'core:product_detail' product.p_id%}">{{product.title}}</a>
                         </h3>
                         <h4 class="product-price">
                           {{product.price}} MAD <del class="product-old-price">{{product.old_price}} MAD</del>
@@ -144,6 +145,7 @@
                           <i class="fa fa-shopping-cart"></i> add to cart
                         </button>
                       </div>
+                    </a>
                     </div>
                     {% endfor%}
                     <!-- /product -->

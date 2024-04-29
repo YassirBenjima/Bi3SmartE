@@ -200,7 +200,7 @@
           <li><a href="{% url 'core:index' %}">Home</a></li>
           <li><a href="{% url 'core:category_list' %}">Categories</a></li>
           <li><a href="{% url 'core:vendors-list' %}">Vendors</a></li>
-          <li><a href="#">Smartphones</a></li>
+          <li><a href="{% url 'core:product_list' %}">Shop</a></li>
           <li><a href="#">Cameras</a></li>
           <li><a href="#">Accessories</a></li>
         </ul>
@@ -267,21 +267,20 @@
             <div class="footer">
               <h3 class="footer-title">About Us</h3>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                do eiusmod tempor incididunt ut.
+                Bi3 Smart AI Shop
               </p>
               <ul class="footer-links">
                 <li>
                   <a href="#"
-                    ><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a
+                    ><i class="fa fa-map-marker"></i>EMSI Marrakech 40000</a
                   >
                 </li>
                 <li>
-                  <a href="#"><i class="fa fa-phone"></i>+021-95-51-84</a>
+                  <a href="#"><i class="fa fa-phone"></i>+212 623-401-404</a>
                 </li>
                 <li>
                   <a href="#"
-                    ><i class="fa fa-envelope-o"></i>email@email.com</a
+                    ><i class="fa fa-envelope-o"></i> Bi3Smart@email.com</a
                   >
                 </li>
               </ul>
@@ -292,11 +291,9 @@
             <div class="footer">
               <h3 class="footer-title">Categories</h3>
               <ul class="footer-links">
-                <li><a href="#">Hot deals</a></li>
-                <li><a href="#">Laptops</a></li>
-                <li><a href="#">Smartphones</a></li>
-                <li><a href="#">Cameras</a></li>
-                <li><a href="#">Accessories</a></li>
+                {% for category in categories%}
+                  <li><a data-toggle="tab" href="{% url 'core:category_product_list' category.C_id %}">{{category.title}}</a></li>
+                {%endfor%}
               </ul>
             </div>
           </div>
