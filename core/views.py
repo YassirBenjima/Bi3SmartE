@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from django.db.models import Count
+from django.db.models import Count,Avg
 from django.http import HttpResponse
 from taggit.models import Tag
 from core.models import Product,Category,Vendor,CartOrder,CartOrderItems,ProductImages,ProductReview,Wishlist,Address
@@ -56,10 +56,25 @@ def vendor_detail_view(request,v_id):
 def product_detail_view(request,p_id):
     product = Product.objects.get(p_id=p_id)
     products = Product.objects.filter(category = product.category).exclude(p_id=p_id)
+    
+    reviews = ProductReview.objects.filter(product=product).order_by("-date")
+    avrage_rating = ProductReview.objects.filter(product=product).aggregate(rating=Avg('rating'))
+    total_five_reviews = ProductReview.objects.filter(rating=5).count()
+    total_four_reviews = ProductReview.objects.filter(rating=4).count()
+    total_tree_reviews = ProductReview.objects.filter(rating=3).count()
+    total_two_reviews = ProductReview.objects.filter(rating=2).count()
+    total_one_reviews = ProductReview.objects.filter(rating=1).count()
     p_image = product.p_images.all()
     context = {
         "product":product,
         "p_image":p_image,
+        "reviews" : reviews,
+        "avrage_rating": avrage_rating,
+        "total_five_reviews" :total_five_reviews,
+        "total_four_reviews":total_four_reviews,                
+        "total_tree_reviews":total_tree_reviews,
+        "total_two_reviews":total_two_reviews,
+        "total_one_reviews":total_one_reviews,
         "products":products,
     }
     return render(request,'core/product-detail.html',context)
