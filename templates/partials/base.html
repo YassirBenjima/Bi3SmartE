@@ -407,6 +407,34 @@
           });
       });
     });
+    $(document).ready(function(){
+      $(".loader").hide();
+      $(".filter-checkbox").on("click", function(){
+        let filter_object = {};
+        $(".filter-checkbox").each(function(index){
+          let filter_value = $(this).val();
+          let filter_key = $(this).data("filter");
+          filter_object[filter_key] = Array.from(document.querySelectorAll('input[data-filter='+filter_key+']:checked')).map(function(element){
+            return element.value;
+          });
+        });
+        console.log(filter_object);
+        $.ajax({
+          url:"/filter-products",
+          data : filter_object,
+          dataType : 'json',
+          beforeSend : function (){
+            console.log("Trying to filter ... ");
+          },
+          success: function(response){
+            console.log(response);
+            console.log("Data filtred ... ");
+            $("#filtered-product").html(response.data);
+          }
+        })
+      });
+    });
+
 </script>
 </body>
 </html>

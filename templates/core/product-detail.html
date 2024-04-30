@@ -61,7 +61,7 @@
                         <h3 class="product-price">{{product.price}} MAD <del class="product-old-price">{{product.old_price}} MAD</del></h3>
                         <span class="product-available">In Stock</span>
                     </div>
-                    <p>{{product.description}}</p>
+                    <p>{{product.description|safe}}</p>
 
                     {% comment %} <div class="product-options">
                         <label>
@@ -134,7 +134,7 @@
                         <div id="tab1" class="tab-pane fade in active">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <p>{{product.description}}</p>
+                                    <p>{{product.description|safe}}</p>
                                 </div>
                             </div>
                         </div>
@@ -144,7 +144,7 @@
                         <div id="tab2" class="tab-pane fade in">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <p>{{product.specefications}}</p>
+                                    <p>{{product.specefications|safe}}</p>
                                 </div>
                             </div>
                         </div>
