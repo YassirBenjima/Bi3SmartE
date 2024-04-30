@@ -392,6 +392,21 @@
         $(".alert").alert("close")
     },3000
     )
+    $(document).ready(function(){
+      $("#commentForm").submit(function(e){
+          e.preventDefault();
+          $.ajax({
+              data: $(this).serialize(),
+              method: $(this).attr("method"),
+              url: $(this).attr("action"),
+              dataType: "json",
+              success: function(response){
+                  console.log("Comment submitted successfully!");
+                  location.reload(); 
+              }
+          });
+      });
+    });
 </script>
 </body>
 </html>
