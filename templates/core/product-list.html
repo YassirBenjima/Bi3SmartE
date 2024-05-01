@@ -53,7 +53,7 @@
         </div>
         <!-- /aside Widget -->
         <!-- aside Widget -->
-        <div class="aside">
+        {% comment %} <div class="aside">
           <h3 class="aside-title">Price</h3>
           <div class="price-filter">
             <div id="price-slider"></div>
@@ -69,11 +69,11 @@
               <span class="qty-down">-</span>
             </div>
           </div>
-        </div>
+        </div> {% endcomment %}
         <!-- /aside Widget -->
 
         <!-- aside Widget -->
-        <div class="aside">
+        {% comment %} <div class="aside">
           <h3 class="aside-title">Brand</h3>
           <div class="checkbox-filter">
             <div class="input-checkbox">
@@ -85,11 +85,11 @@
               </label>
             </div>
           </div>
-        </div>
+        </div> {% endcomment %}
         <!-- /aside Widget -->
 
         <!-- aside Widget -->
-        <div class="aside">
+        {% comment %} <div class="aside">
           <h3 class="aside-title">Top selling</h3>
           <div class="product-widget">
             <div class="product-img">
@@ -101,7 +101,7 @@
               <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
             </div>
           </div>
-        </div>
+        </div> {% endcomment %}
         <!-- /aside Widget -->
       </div>
       <!-- /ASIDE -->
@@ -151,7 +151,7 @@
                 <div class="product-body">
                   <p class="product-category">{{product.category.title}}</p>
                   <h3 class="product-name"><a href="{% url 'core:product_detail' product.p_id%}">{{product.title}}</a></h3>
-                  <h4 class="product-price">{{product.price}} MAD <del class="product-old-price">{{product.old_price}} MAD</del></h4>
+                  <h4 class="product-price"> <span class="current-product-price-{{product.id}}">{{product.price}}</span> MAD <del class="product-old-price">{{product.old_price}} MAD</del></h4>
                   <div class="product-rating">
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star"></i>
@@ -166,7 +166,14 @@
                   </div>
                 </div>
                 <div class="add-to-cart">
-                  <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                  <input type="hidden" value="1" name="" id="product-quantity" class="product-quantity-{{product.id}}">
+                  <input type="hidden" class="product-pid-{{product.id}}" id="{{product.id}}" value="{{product.p_id}}">
+                  <input type="hidden" class="product-id-{{product.id}}" id="{{product.id}}" value="{{product.id}}">
+                  <input type="hidden" class="product-image-{{product.id}}" id="{{product.image.url}}" value="{{product.image.url}}">
+                   <input type="hidden" class="product-title-{{product.id}}" id="{{product.title}}" value="{{product.title}}">
+                  <button class="add-to-cart-btn" id="add-to-cart-btn" data-index="{{product.id}}">
+                    <i class="fa fa-shopping-cart" id="add-to-cart-btn"></i> add to cart
+                  </button>
                 </div>
               </div>
             </a>

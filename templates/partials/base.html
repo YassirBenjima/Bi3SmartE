@@ -118,7 +118,7 @@
                   >
                     <i class="fa fa-shopping-cart"></i>
                     <span>Your Cart</span>
-                    <div class="qty">3</div>
+                    <div class="qty cart-items-count" id="cart-items-count">{{request.session.cart_data_obj|length}}</div>
                   </a>
                   <div class="cart-dropdown">
                     <div class="cart-list">
@@ -434,7 +434,46 @@
         })
       });
     });
+    $(".add-to-cart-btn").on("click",function(){
+      let this_val = $(this)
+      let index = this_val.attr("data-index")
 
+      let quantity = $(".product-quantity-"+index).val()
+      let product_title = $(".product-title-"+index).val()
+      let product_id = $(".product-id-"+index).val()
+      let product_pid = $(".product-pid-"+index).val()
+      let product_price = $(".current-product-price-"+index +":first").text();
+      let product_image = $(".product-image-"+index).val()
+
+      console.log("quantity :" , quantity);
+      console.log("product_title :" , product_title);
+      console.log("product_id :" , product_id);
+      console.log("product_pid :" , product_pid);
+      console.log("currnet-product-price :" , product_price);
+      console.log("product_image :" , product_image);
+
+
+      $.ajax({
+        url: '/add-to-cart',
+        data: {
+          'id': product_id,
+          'p_id': product_pid,
+          'image':product_image,
+          'qty':quantity,
+          'title':product_title,
+          'price':product_price,
+        },
+        dataType:'json',
+        beforeSend: function(){
+          console.log("Adding Product to cart ... ");
+        },
+        success: function(res){
+          this_val.html("Item Added to cart");
+          console.log("Added Product to cart ... ");
+          $(".cart-items-count").text(response.TotalCartItem)
+        }
+      })
+    })
 </script>
 </body>
 </html>

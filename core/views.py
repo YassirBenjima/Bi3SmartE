@@ -133,3 +133,36 @@ def filter_product(request):
 
     data =  render_to_string("core/async/product-list.html", {"products": products })
     return JsonResponse({"data":data})
+
+def add_to_cart(request):
+    # Initialize an empty dictionary to hold information about the product to be added to the cart
+    cart_product = {}
+    # Populate the cart_product dictionary with information about the product from the GET request
+    cart_product[str(request.GET['id'])] = {
+        'title': request.GET['title'],
+        'qty': request.GET['qty'],
+        'price': request.GET['price'],
+        'image': request.GET['image'],
+        'p_id': request.GET['p_id'],
+
+    }
+    # Check if 'cart_data_obj' exists in the session
+    if 'cart_data_obj' in request.session:
+        # Check if the product ID already exists in the cart data
+        if str(request.GET['id']) in request.session['cart_data_obj']:
+            # If the product ID exists, update the quantity of the existing product in the cart
+            cart_data = request.session['cart_data_obj']
+            cart_data[str(request.GET['id'])]['qty'] = int(cart_product[str(request.GET['id'])]['qty'])
+            cart_data.update(cart_data)  # This line seems redundant or incorrect
+            request.session['cart_data_obj'] = cart_data
+        else:
+            # If the product ID does not exist, add the new product to the cart data
+            cart_data = request.session['cart_data_obj']
+            cart_data.update(cart_product)
+            request.session['cart_data_obj'] = cart_data
+    else:
+        # If 'cart_data_obj' does not exist in the session, create it and add the product
+        request.session['cart_data_obj'] = cart_product
+    # Return JSON response containing updated cart data and total number of items in the cart
+    return JsonResponse({"data": request.session['cart_data_obj'], 'TotalCartItem': len(request.session['cart_data_obj'])})
+

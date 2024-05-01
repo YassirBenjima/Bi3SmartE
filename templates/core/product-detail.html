@@ -58,7 +58,7 @@
                         <a class="review-link">{{product.stock_count}} Product(s) </a>
                     </div>
                     <div>
-                        <h3 class="product-price">{{product.price}} MAD <del class="product-old-price">{{product.old_price}} MAD</del></h3>
+                        <h3 class="product-price"> <span class="current-product-price-{{product.id}}" id="current-product-price-{{product.id}}">{{product.price}}</span> MAD <del class="product-old-price">{{product.old_price}} MAD</del></h3>
                         <span class="product-available">In Stock</span>
                     </div>
                     <p>{{product.description|safe}}</p>
@@ -82,12 +82,18 @@
                         <div class="qty-label">
                             Qty
                             <div class="input-number">
-                                <input type="number">
+                                <input type="number" value="1" name="" id="product-quantity" class="product-quantity-{{product.id}}">
                                 <span class="qty-up">+</span>
                                 <span class="qty-down">-</span>
                             </div>
                         </div>
-                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                        <input type="hidden" class="product-pid-{{product.id}}" id="{{product.id}}" value="{{product.p_id}}">
+                        <input type="hidden" class="product-id-{{product.id}}" id="{{product.id}}" value="{{product.id}}">
+                        <input type="hidden" class="product-image-{{product.id}}" id="{{product.image.url}}" value="{{product.image.url}}">
+                        <input type="hidden" class="product-title-{{product.id}}" id="{{product.title}}" value="{{product.title}}">
+                        <button class="add-to-cart-btn" id="add-to-cart-btn" data-index="{{product.id}}">
+                            <i class="fa fa-shopping-cart" id="add-to-cart-btn"></i> add to cart
+                        </button>
                     </div>
 
                     <ul class="product-btns">
