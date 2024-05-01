@@ -6,6 +6,21 @@ from core.models import Product,Category,Vendor,CartOrder,CartOrderItems,Product
 from core.forms import ProductReviewForm
 from django.template.loader import render_to_string
 from django.contrib import messages
+import google.generativeai as genai
+
+
+def chat(request):
+    if request.method == 'POST':
+        prompt = request.POST.get('prompt', '')
+        # Configure generative AI
+        GOOGLE_API_KEY = 'AIzaSyBkeHKZEaz-5N0c3S1B1pU3nw5b4pgeWWM'
+        genai.configure(api_key=GOOGLE_API_KEY)
+        model = genai.GenerativeModel('gemini-pro')
+        response = model.generate_content(prompt)
+        result = ''.join([p.text for p in response.candidates[0].content.parts])
+        return render(request, 'core/chat.html', {'prompt': prompt, 'result': result})
+    return render(request, 'core/chat.html', {})
+
 # Create your views here.
 def index(request):
     # product = Product.objects.all()

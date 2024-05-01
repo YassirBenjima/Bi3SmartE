@@ -1,8 +1,11 @@
 from django.urls import path
-from core.views import index,update_item_from_cart,delete_item_from_cart,cart_view,add_to_cart,filter_product,search_view,ajax_add_review,tag_list,product_list_view,category_list_view,category_product_list_view, vendor_detail_view,vendor_list_view,product_detail_view
+from core.views import index,chat,update_item_from_cart,delete_item_from_cart,cart_view,add_to_cart,filter_product,search_view,ajax_add_review,tag_list,product_list_view,category_list_view,category_product_list_view, vendor_detail_view,vendor_list_view,product_detail_view
 app_name= "core"
 
 urlpatterns = [
+    #chatbot
+    path('chat/', chat, name='chat'),
+
     #HomePage
     path("",index , name="index"),
     #Product

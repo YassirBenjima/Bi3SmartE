@@ -1,0 +1,29 @@
+{% extends 'partials/base.html'%}
+{% block title %}Bi3Smart | Chat Page{% endblock %}
+{% load static %}
+{% block content %}
+
+<div id="newsletter" class="section">
+    <!-- container -->
+    <div class="container">
+      <!-- row -->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="newsletter">
+            <p>Helper <strong> Bi3 Smart</strong></p>
+            <form method="post">
+                {% csrf_token %}
+                <input class="input" id="prompt" name="prompt" type="text" value="{{ prompt }}" placeholder="Enter Your Question"/>
+                <button type="submit" class="newsletter-btn">
+                    <i class="fa fa-chat"></i> Send
+                </button>
+            </form>
+            {% if result %}
+                <p class="mt-3">Bi3Smart : {{ result }}</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

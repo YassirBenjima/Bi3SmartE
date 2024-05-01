@@ -147,6 +147,8 @@
           <li><a href="{% url 'core:category_list' %}">Categories</a></li>
           <li><a href="{% url 'core:vendors-list' %}">Vendors</a></li>
           <li><a href="{% url 'core:product_list' %}">Shop</a></li>
+          <li><a href="{% url 'core:chat' %}">Helper</a></li>
+
         </ul>
         <!-- /NAV -->
       </div>
@@ -159,7 +161,7 @@
 
 {% endblock content %}
  <!-- NEWSLETTER -->
- <div id="newsletter" class="section">
+ {% comment %} <div id="newsletter" class="section">
   <!-- container -->
   <div class="container">
     <!-- row -->
@@ -199,7 +201,7 @@
     <!-- /row -->
   </div>
   <!-- /container -->
-</div>
+</div> {% endcomment %}
 <footer id="footer">
     <!-- top footer -->
     <div class="section">
