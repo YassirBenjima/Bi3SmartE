@@ -151,7 +151,7 @@
                 <div class="product-body">
                   <p class="product-category">{{product.category.title}}</p>
                   <h3 class="product-name"><a href="{% url 'core:product_detail' product.p_id%}">{{product.title}}</a></h3>
-                  <h4 class="product-price"> <span class="current-product-price-{{product.id}}">{{product.price}}</span> MAD <del class="product-old-price">{{product.old_price}} MAD</del></h4>
+                  <h4 class="product-price"> <span class="current-product-price-{{product.id}}">{{product.price|floatformat:0}}</span> MAD <del class="product-old-price">{{product.old_price|floatformat:0}} MAD</del></h4>
                   <div class="product-rating">
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star"></i>
